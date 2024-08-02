@@ -6,8 +6,7 @@ const router = express.Router();
 //Route to get all citizens
 router.get('/', async (req, res) => {
   try {
-    const query = req.query;
-    const citizens = await Citizen.find(query);
+    const citizens = await Citizen.find(req.body);
     res.status(200).send(citizens);
   }
   catch (error) {
