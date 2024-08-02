@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const hospitalRoute = require('./routes/hospital.route');
+const citizenRoute = require('./routes/citizen.route');
 const app = express();
 
 app.get('/', (req, res) => {
@@ -12,6 +13,7 @@ mongoose.connect('mongodb+srv://rageh205:rageh123@vitalvault.40kwiom.mongodb.net
         console.log("Connected to DB");
         app.use(express.json());
         app.use('/hospitals', hospitalRoute);
+        app.use('/citizens', citizenRoute);
         app.listen(3000);
     })
     .catch((error) => {
