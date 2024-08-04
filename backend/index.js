@@ -2,13 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const hospitalRoute = require('./routes/hospital.route');
 const citizenRoute = require('./routes/citizen.route');
+require('dotenv').config();
+const URI = process.env.DATABASE_URL;
 const app = express();
 
 app.get('/', (req, res) => {
     res.status(200).send("Hello, Rageh");
 })
 
-mongoose.connect('mongodb+srv://rageh205:rageh123@vitalvault.40kwiom.mongodb.net/?retryWrites=true&w=majority&appName=VitalVault')
+mongoose.connect(URI)
     .then(() => {
         console.log("Connected to DB");
         app.use(express.json());
