@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const hospitalRoute = require('./routes/hospital.route');
 const citizenRoute = require('./routes/citizen.route');
-require('dotenv').config();
-const URI = process.env.DATABASE_URL;
+const dotenv = require('dotenv').config();
+const URI = process.env.CONNECTION_STRING;
 const app = express();
 
 app.get('/', (req, res) => {

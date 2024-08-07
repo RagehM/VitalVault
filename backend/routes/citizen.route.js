@@ -11,19 +11,18 @@ router.get('/', async (req, res) => {
   }
   catch (error) {
     console.log(error);
-    res.status(500).send(error);
+    res.status(500).send('error getting citizens');
   }
 });
 
 //Route to create a citizen
 router.post('/', async (req, res) => {
   try {
-    const citizen = await Citizen.create(req.body);
-    res.status(200).send(citizen);
+    await Citizen.create(req.body);
+    res.status(201).send('citized added successfully');
   }
   catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    res.status(500).send('error getting hospital');
   }
 });
 
@@ -32,12 +31,10 @@ router.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     await Citizen.findByIdAndUpdate(id, req.body);
-    const citizens = await Citizen.find();
-    res.status(200).send(citizens);
+    res.status(200).send('citizen updated successfully');
   }
   catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    res.status(500).send('error updating citizen');
   }
 });
 
@@ -46,12 +43,10 @@ router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     await Citizen.findByIdAndDelete(id);
-    const citizens = await Citizen.find();
-    res.status(200).send(citizens);
+    res.status(200).send('citizen deleted successfully');
   }
   catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    res.status(500).send('error deleting citizen');
   }
 });
 
