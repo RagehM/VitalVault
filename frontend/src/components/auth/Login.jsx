@@ -19,28 +19,26 @@ const Login = () => {
       if (userName === 'Admin' && password === 'Admin') {
         navigate('home');
       }
-    }, 2000);
+      else{
+        setShowSpinner(false);
+      }
+    }, 1500);
   }
   return (
-    <div className='card'>
-      <div className='image'>
-        <img src={img01} alt="img" />
+    <div class="form-signin">
+      <img src={img01} alt="" />
+      <div class="form-label-group">
+        <input type="text" class="form-control" placeholder="@userName" onChange={handleUserChange}/>
       </div>
-      <div className="inputs">
-        <p>Login</p>
-        <div className="form-floating mb-3">
-          <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" value={userName} onChange={handleUserChange} />
-          <label for="floatingInput">@UserName</label>
-        </div>
-        <div className="form-floating">
-          <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value={password} onChange={handlePasswordChange} />
-          <label for="floatingPassword">Password</label>
-        </div>
-        <button type="button" className="btn btn-primary btn-lg" onClick={buttonClicked}>Login</button>
-        {showSpinner && <div className="spinner-border text-primary" role="status">
-          <span className="sr-only">Loading...</span></div>}
+      <div class="form-label-group">
+        <input type="password" class="form-control" placeholder="password" onChange={handlePasswordChange}/>
       </div>
-    </div >
+      <button class="btn btn-lg btn-primary" onClick={buttonClicked}>Login</button>
+      {showSpinner && <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>}
+      <p class="mt-5 mb-3 text-muted text-center">©2024</p>
+    </div>
   )
 }
 
