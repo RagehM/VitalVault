@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Card from './Card';
+import Special from './Special';
 const Content = () => {
   const [hospitals, setHospitals] = useState(null);
   const [flag, setFlag] = useState(false);
@@ -15,11 +16,10 @@ const Content = () => {
   const handleHospitalDelete = (id) => {
     setHospitals(hospitals.filter(hospital => hospital.id !== id));
     setFlag(!flag);
-    console.log(flag);
   }
   return (
     <div className="content">
-      <h1>Dashboard</h1>
+      <h1>Hospitals</h1>
       <hr />
       <div className='options'>
         {hospitals && hospitals.map(hospital => (
@@ -28,9 +28,10 @@ const Content = () => {
             id={hospital._id}
             name={hospital.name}
             location={hospital.location}
-            onDelete={() => handleHospitalDelete(hospital._id)}
+            onSendData={handleHospitalDelete}
           />
         ))}
+        <Special />
       </div>
     </div>
   )
