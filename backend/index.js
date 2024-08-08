@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const hospitalRoute = require('./routes/hospital.route');
 const citizenRoute = require('./routes/citizen.route');
 const dotenv = require('dotenv').config();
+const cors = require('cors');
 const URI = process.env.CONNECTION_STRING;
 const app = express();
-
+app.use(cors());
 app.get('/', (req, res) => {
     res.status(200).send("Hello, Rageh");
 })

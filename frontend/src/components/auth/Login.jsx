@@ -19,7 +19,7 @@ const Login = () => {
       if (userName === 'Admin' && password === 'Admin') {
         navigate('home');
       }
-      else{
+      else {
         setShowSpinner(false);
       }
     }, 1500);
@@ -28,10 +28,10 @@ const Login = () => {
     <div class="form-signin">
       <img src={img01} alt="" />
       <div class="form-label-group">
-        <input type="text" class="form-control" placeholder="@userName" onChange={handleUserChange}/>
+        <input type="text" class="form-control" placeholder="@userName" onChange={handleUserChange} />
       </div>
       <div class="form-label-group">
-        <input type="password" class="form-control" placeholder="password" onChange={handlePasswordChange}/>
+        <input type="password" class="form-control" placeholder="password" onChange={handlePasswordChange} />
       </div>
       <button class="btn btn-lg btn-primary" onClick={buttonClicked}>Login</button>
       {showSpinner && <div class="spinner-border text-primary" role="status">

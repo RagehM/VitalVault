@@ -1,24 +1,37 @@
-import React from 'react'
-
+import React, { useState, useEffect } from 'react'
+import Card from './Card';
 const Content = () => {
+  const [hospitals, setHospitals] = useState(null);
+  const [flag, setFlag] = useState(false);
+  useEffect(() => {
+    fetch('http://localhost:3000/hospitals')
+      .then(res => {
+        return (res.json());
+      })
+      .then(data => {
+        setHospitals(data);
+      })
+  }, [flag])
+  const handleHospitalDelete = (id) => {
+    setHospitals(hospitals.filter(hospital => hospital.id !== id));
+    setFlag(!flag);
+    console.log(flag);
+  }
   return (
     <div className="content">
-      <div className='options'>
-        <h1>Dashboard</h1>
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Edit
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li>
-          </ul>
-        </div>
-      </div>
+      <h1>Dashboard</h1>
       <hr />
+      <div className='options'>
+        {hospitals && hospitals.map(hospital => (
+          <Card
+            key={hospital._id}
+            id={hospital._id}
+            name={hospital.name}
+            location={hospital.location}
+            onDelete={() => handleHospitalDelete(hospital._id)}
+          />
+        ))}
+      </div>
     </div>
   )
 }
